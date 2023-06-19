@@ -16,8 +16,7 @@ const createItem = async (req, res) => {
   }
 };
 
-//Retrieve all book items from the database.
-// Get all items
+//Retrieve all book items from the database(Get all items)
 const getAllItems = async (req, res) => {
   try {
     const data = await Item.find();
