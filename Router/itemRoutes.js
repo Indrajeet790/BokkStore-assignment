@@ -5,6 +5,7 @@ const {
   getAllItems,
   getItemById,
   updateItem,
+  deleteItemById,
 } = require("../controller/booksController");
 
 // Post route for create a new book item
@@ -18,5 +19,8 @@ router.get("/:id", getItemById);
 
 //Update an existing item by ID
 router.put("/:id", updateItem);
+
+//Create Routes for Delete an item by ID
+router.delete("/:id", deleteItemById);
 
 module.exports = router;
