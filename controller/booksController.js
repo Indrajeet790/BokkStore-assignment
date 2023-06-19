@@ -22,10 +22,25 @@ const getAllItems = async (req, res) => {
     const data = await Item.find();
     return res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+//Retrieve a specific item by its ID.
+const getItemById = async (req, res) => {
+  try {
+    const book = await Item.findById(req.params.id);
+    if (!book) {
+      return res.status(404).json({ error: "Book is not found" });
+    }
+    res.json(book);
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   createItem,
   getAllItems,
+  getItemById,
 };
