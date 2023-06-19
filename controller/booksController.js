@@ -26,7 +26,7 @@ const getAllItems = async (req, res) => {
   }
 };
 
-//Retrieve a specific item by its ID.
+//Retrieve a specific book item by its ID.
 const getItemById = async (req, res) => {
   try {
     const book = await Item.findById(req.params.id);
@@ -39,8 +39,27 @@ const getItemById = async (req, res) => {
   }
 };
 
+// Update an existing item by ID
+const updateItem = async (req, res) => {
+  try {
+    const { title, author, price } = req.body;
+    const bookItem = await Item.findByIdAndUpdate(
+      req.params.id,
+      { title, author, price },
+      { new: true }
+    );
+    if (!bookItem) {
+      return res.status(404).json({ error: "bookItem not found" });
+    }
+    res.json(bookItem);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   createItem,
   getAllItems,
   getItemById,
+  updateItem,
 };
