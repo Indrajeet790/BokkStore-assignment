@@ -57,9 +57,23 @@ const updateItem = async (req, res) => {
   }
 };
 
+// Delete an item by ID
+const deleteItemById = async (req, res) => {
+  try {
+    const bookItem = await Item.findByIdAndDelete(req.params.id);
+    if (!bookItem) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+    res.json({ message: "Item deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   createItem,
   getAllItems,
   getItemById,
   updateItem,
+  deleteItemById,
 };
