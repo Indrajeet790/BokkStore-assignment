@@ -23,7 +23,36 @@ const createItem = async (req, res) => {
     return res.status(400).json({ success: false, error: error.message });
   }
 };
+// // Get all items with pagination.
+const getAllItems = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1; // Default page is 1 if not specified
+    const limit = parseInt(req.query.limit) || 10; // Default limit is 10 if not specified
+
+    const startIndex = (page - 1) * limit;
+    const items = await Item.find().skip(startIndex).limit(limit);
+    const totalItems = await Item.countDocuments();
+
+    const pagination = {
+      currentPage: page,
+      totalPages: Math.ceil(totalItems / limit),
+      totalItems: totalItems,
+    };
+
+    logger.BookLogger.info("Items retrieved successfully");
+    return res.status(200).json({
+      success: true,
+      message: "Items retrieved successfully",
+      items,
+      pagination,
+    });
+  } catch (error) {
+    logger.BookLogger.error("Error retrieving items:", error);
+    return res.status(400).json({ success: false, error: error.message });
+  }
+};
 
 module.exports = {
   createItem,
+  getAllItems,
 };
