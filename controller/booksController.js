@@ -17,15 +17,34 @@ const createItem = async (req, res) => {
 };
 
 //Retrieve all book items from the database(Get all items)
+// const getAllItems = async (req, res) => {
+//   try {
+//     const data = await Item.find();
+//     return res.status(200).json(data);
+//   } catch (error) {
+//     return res.status(400).json({ error: error.message });
+//   }
+// };
+
 const getAllItems = async (req, res) => {
   try {
-    const data = await Item.find();
-    return res.status(200).json(data);
+    const page = parseInt(req.query.page) || 1; // Default page is 1 if not specified
+    const limit = parseInt(req.query.limit) || 10; // Default limit is 10 if not specified
+
+    const startIndex = (page - 1) * limit;
+    const items = await Item.find().skip(startIndex).limit(limit);
+    const totalItems = await Item.countDocuments();
+
+    const pagination = {
+      currentPage: page,
+      totalPages: Math.ceil(totalItems / limit),
+      totalItems: totalItems,
+    };
+    return res.status(200).json({ items, pagination });
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
-
 //Retrieve a specific book item by its ID.
 const getItemById = async (req, res) => {
   try {
