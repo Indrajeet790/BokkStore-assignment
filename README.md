@@ -21,7 +21,7 @@
 1. Make sure you have Node.js, Express, and MongoDB installed on your system.
 2. Clone the repository: `git clone https://github.com/Indrajeet790/BokkStore-assignment
 3. Install the dependencies: `npm install`
-4. Start the server: `nodemon index.js`
+4. Start the server: `node index.js`
 5. The API will be available at `http://localhost:8000`.
 
 ## Endpoints
