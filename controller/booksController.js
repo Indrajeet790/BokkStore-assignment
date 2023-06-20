@@ -22,7 +22,7 @@ const getAllItems = async (req, res) => {
     const data = await Item.find();
     return res.status(200).json(data);
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(400).json({ error: error.message });
   }
 };
 
@@ -35,7 +35,7 @@ const getItemById = async (req, res) => {
     }
     res.json(book);
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(400).json({ error: error.message });
   }
 };
 
@@ -53,7 +53,7 @@ const updateItem = async (req, res) => {
     }
     res.json(bookItem);
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(400).json({ error: error.message });
   }
 };
 
@@ -66,7 +66,7 @@ const deleteItemById = async (req, res) => {
     }
     res.json({ message: "Item deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(400).json({ error: error.message });
   }
 };
 
