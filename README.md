@@ -7,6 +7,15 @@
 - And also used pagination for retrieving items.
 - I used MongoDb for store data into database.
 
+## Requirements
+
+- Node.js (version X.X.X)
+- MongoDB (version X.X.X)
+- express (version X.X.X)
+- mongoose (version X.X.X)
+- winston(version X.X.X)
+- winston-mongodb(version X.X.X)
+
 ## Setup
 
 1. Make sure you have Node.js, Express, and MongoDB installed on your system.
@@ -22,3 +31,7 @@
 - GET `/api/items/:id` - Retrieve a specific item by its ID.
 - PUT `/api/items/update/:id` - Update an existing item by its ID.
 - DELETE `/api/items/delete/:id` - Delete an item by its ID.
+
+## Logging
+
+The project uses the Winston logging library for basic error logging. The logs are printed to the console.
