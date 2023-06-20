@@ -23,6 +23,6 @@ app.listen(PORT, (err) => {
     console.log("server is not running on port");
   } else {
     // console.log(`server running on port ${PORT}`);
-    logger.BookLogger.error(`server running on port ${PORT}`);
+    logger.BookLogger.info(`server running on port ${PORT}`);
   }
 });
