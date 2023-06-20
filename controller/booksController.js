@@ -51,8 +51,29 @@ const getAllItems = async (req, res) => {
     return res.status(400).json({ success: false, error: error.message });
   }
 };
+// // Retrieve a specific book item by its ID.
+const getItemById = async (req, res) => {
+  try {
+    const book = await Item.findById(req.params.id);
+    if (!book) {
+      logger.BookLogger.error("Book not found");
+      return res.status(404).json({ success: false, error: "Book not found" });
+    }
+
+    logger.BookLogger.info("Book retrieved successfully");
+    return res.status(200).json({
+      success: true,
+      message: "Book retrieved successfully",
+      book,
+    });
+  } catch (error) {
+    logger.BookLogger.error("Error retrieving book:", error);
+    return res.status(400).json({ success: false, error: error.message });
+  }
+};
 
 module.exports = {
   createItem,
   getAllItems,
+  getItemById,
 };
