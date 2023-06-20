@@ -20,6 +20,6 @@ router.get("/:id", getItemById);
 router.put("/update/:id", updateItem);
 
 //Create Routes for Delete an item by ID
-router.delete("/:id", deleteItemById);
+router.delete("/delete/:id", deleteItemById);
 
 module.exports = router;
