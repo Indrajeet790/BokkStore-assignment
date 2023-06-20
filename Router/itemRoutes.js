@@ -9,7 +9,7 @@ const {
 } = require("../controller/booksController");
 
 // Post route for create a new book item
-router.post("/", createItem);
+router.post("/create", createItem);
 
 // create route for get all item from database.
 router.get("/listAll", getAllItems);
