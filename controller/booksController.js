@@ -1,4 +1,5 @@
 const Item = require("../models/BooksModel");
+// const logger = require("../utils/logger");
 
 //- Create a new item in the database.
 const createItem = async (req, res) => {
@@ -15,16 +16,6 @@ const createItem = async (req, res) => {
     throw error;
   }
 };
-
-//Retrieve all book items from the database(Get all items)
-// const getAllItems = async (req, res) => {
-//   try {
-//     const data = await Item.find();
-//     return res.status(200).json(data);
-//   } catch (error) {
-//     return res.status(400).json({ error: error.message });
-//   }
-// };
 
 const getAllItems = async (req, res) => {
   try {
