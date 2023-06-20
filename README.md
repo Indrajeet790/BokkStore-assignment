@@ -1,10 +1,12 @@
 # BookStore-assignment
 
+Published postman documentation of BookStore Api:https://documenter.getpostman.com/view/25896599/2s93z3eQqD
+
 ## Description
 
 -This is a simple RESTful API that performs CRUD (Create, Read, Update, Delete) operations.
 
-- And also used pagination for retrieving items.
+- And used pagination for listing control.
 - I used MongoDb for store data into database.
 
 ## Requirements
