@@ -5,6 +5,9 @@ const PORT = 8000;
 // database connection
 const DbConnection = require("./config/DbConnection");
 
+//
+const logger = require("./utils/logger");
+
 // use middleware for parsing data from body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,6 +22,7 @@ app.listen(PORT, (err) => {
   if (err) {
     console.log("server is not running on port");
   } else {
-    console.log(`server running on port ${PORT}`);
+    // console.log(`server running on port ${PORT}`);
+    logger.BookLogger.error(`server running on port ${PORT}`);
   }
 });
