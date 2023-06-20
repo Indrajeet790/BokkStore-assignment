@@ -17,7 +17,7 @@ router.get("/listAll", getAllItems);
 router.get("/:id", getItemById);
 
 //Update an existing item by ID
-router.put("/:id", updateItem);
+router.put("/update/:id", updateItem);
 
 //Create Routes for Delete an item by ID
 router.delete("/:id", deleteItemById);
