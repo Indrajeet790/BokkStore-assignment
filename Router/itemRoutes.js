@@ -12,8 +12,7 @@ const {
 router.post("/", createItem);
 
 // create route for get all item from database.
-router.get("/", getAllItems);
-
+router.get("/listAll", getAllItems);
 //Retrieve a specific item by its ID.
 router.get("/:id", getItemById);
 
