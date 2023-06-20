@@ -71,9 +71,38 @@ const getItemById = async (req, res) => {
     return res.status(400).json({ success: false, error: error.message });
   }
 };
+// // Update an existing item by ID.
+const updateItem = async (req, res) => {
+  try {
+    const { title, author, price } = req.body;
+    const bookItem = await Item.findByIdAndUpdate(
+      req.params.id,
+      { title, author, price },
+      { new: true }
+    );
+    if (!bookItem) {
+      logger.BookLogger.error("Item not found");
+      return res.status(404).json({ success: false, error: "Item not found" });
+    }
+
+    logger.BookLogger.info("Item updated successfully");
+    return res.status(200).json({
+      success: true,
+      message: "Item updated successfully",
+      bookItem,
+    });
+  } catch (error) {
+    logger.BookLogger.error("Error updating item:", error);
+    return res.status(400).json({ success: false, error: error.message });
+  }
+};
+
+
+
 
 module.exports = {
   createItem,
   getAllItems,
   getItemById,
+  updateItem 
 };
