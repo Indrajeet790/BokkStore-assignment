@@ -96,13 +96,30 @@ const updateItem = async (req, res) => {
     return res.status(400).json({ success: false, error: error.message });
   }
 };
+// // Delete an item by ID.
+const deleteItemById = async (req, res) => {
+  try {
+    const bookItem = await Item.findByIdAndDelete(req.params.id);
+    if (!bookItem) {
+      logger.BookLogger.error("Item not found");
+      return res.status(404).json({ success: false, error: "Item not found" });
+    }
 
-
-
+    logger.BookLogger.info("Item deleted successfully");
+    return res.status(200).json({
+      success: true,
+      message: "Item deleted successfully",
+    });
+  } catch (error) {
+    logger.BookLogger.error("Error deleting item:", error);
+    return res.status(400).json({ success: false, error: error.message });
+  }
+};
 
 module.exports = {
   createItem,
   getAllItems,
   getItemById,
-  updateItem 
+  updateItem,
+  deleteItemById,
 };
